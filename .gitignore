@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/helloworld-win32-x64
 .pnp.js
 
 # testing
