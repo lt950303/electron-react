@@ -73,6 +73,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "babel-plugin-import": "^1.11.0",
     "electron-packager": "^12.2.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0"
@@ -121,6 +122,16 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "es",
+          "style": "css"
+        }
+      ]
     ]
   }
 }
