@@ -1,8 +1,13 @@
 // 引入electron并创建一个Browserwindow
 const {
     app,
-    BrowserWindow
+    BrowserWindow,
+    globalShortcut, 
+    dialog
 } = require('electron')
+
+
+
 const path = require('path')
 const url = require('url')
 
@@ -12,8 +17,13 @@ let mainWindow
 function createWindow() {
     //创建浏览器窗口,宽高自定义具体大小你开心就好
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600
+        width: 1099,
+        height: 1000,
+
+        // // 禁止跨域检查
+        // webPreference:{
+        //     webSecurity:false
+        // }
     })
 
     /* 
@@ -24,9 +34,9 @@ function createWindow() {
         slashes: true
       }))
     */
-    // 加载应用----适用于 react 项目
+    // 加载应用启动的本地应用----适用于 react 项目
       mainWindow.loadURL('http://localhost:3000/');
-    // 加载应用----react 打包
+    // 加载应用打包好的应用----react 打包
     // mainWindow.loadURL(url.format({
     //     pathname: path.join(__dirname, './build/index.html'),
     //     protocol: 'file:',
@@ -35,12 +45,26 @@ function createWindow() {
 
 
     // 打开开发者工具，默认不打开
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     // 关闭window时触发下列事件.
     mainWindow.on('closed', function () {
+        // 关闭window窗口 取消对mainWindow对象的引用
         mainWindow = null
     })
+
+    mainWindow.webContents.on('did-finish-load',()=>{
+        console.log('中文测试chinese');
+        mainWindow.webContents.send('someting','主进程发送到渲染进程的数据')
+    })
+
+    globalShortcut.register('CmdOrCtrl+1', () => {
+        dialog.showMessageBox({
+            type: 'info',
+            message: '你按下了全局注册的快捷键'
+        })
+    })
+    
 }
 
 // 当 Electron 完成初始化并准备创建浏览器窗口时调用此方法

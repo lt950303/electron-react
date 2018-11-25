@@ -1,0 +1,61 @@
+:global .ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+:global .ant-carousel .slick-slide h3 {
+    color: #fff;
+}
+
+:global .ant-carousel {
+    .slick-slide{
+        height: 200px;
+    
+        img{
+            margin: 0 auto;
+        }
+    }
+    .slick-dots{
+        bottom: -12px;
+
+        li{
+            &.slick-active{
+                button{
+                    background-color: #c62f2f;
+                }
+            }
+            button{
+                background-color: #c8c8c8;
+            }
+        } 
+    }
+}
+
+:global .found-top{
+    position: relative;
+    height: 40px;
+    .found-topnav{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        li{
+            box-sizing: border-box;
+            float: left;
+            font-size: 20px;
+            padding: 4px 18px;
+
+            a.active{
+                border-bottom: 2px solid #c62f2f;
+            }
+        }
+    }
+    
+
+}
